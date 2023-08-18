@@ -1,0 +1,42 @@
+<nav class="navbar shadow navbar-expand-lg bg-body-secondary fixed-top" style="z-index: 9999;">
+    <div class="container-fluid">
+        <button class="navbar-toggler" style="z-index: 9999;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav nav-underline me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    {% if  url_for(request.endpoint) == '/' %}
+                        <a class="nav-link active" href="/">Home</a>
+                    {% else %}
+                        <a class="nav-link" href="/">Home</a>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    {% if url_for(request.endpoint) == '/interests' %}
+                        <a class="nav-link active" href="/interests">Interests</a>
+                    {% else %}
+                        <a class="nav-link" href="/interests">Interests</a>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    {% if url_for(request.endpoint) == '/projects' %}
+                        <a class="nav-link active" href="/projects">Projects</a>
+                    {% else %}
+                        <a class="nav-link" href="/projects">Projects</a>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    {% if url_for(request.endpoint) == '/blogs' %}
+                        <a class="nav-link active" href="/blog">Blogs</a>
+                    {% else %}
+                        <a class="nav-link" href="/blog">Blogs</a>
+                    {% endif %}
+                </li>
+            </ul>
+            <span>
+                <a class="btn btn-success" target="_blank" href="{{ url_for('static', filename='/files/Kevin Resume_072223 - Portfolio.pdf') }}"> Resume</a>
+            </span>
+        </div>
+    </div>
+</nav>
