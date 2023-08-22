@@ -18,20 +18,32 @@
 {% block content %}
 <div id="container">
     <div class="row" style="padding: 4em; margin-top: 7em; width: 100%">
+        <div class="col-12 text-center mb-4" >
+            <h1 style="justify-content: center;" >Cover Letter Generator</h1>
+            <hr style="margin: auto; width:25%; height:3px; border-width:0; background-color: #000000;">
+        </div>
         <div class="col-12 my-auto" style=" z-index: 5000; width: 100%;">
-            <form method="post" action="{{ url_for("home") }}">
+            <form method="post" action="{{ url_for("home") }}" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-6 mb-3">
                         <label for="yourName" class="form-label">Your Name</label>
-                        <input type="text" name="yourName" class="form-control" id="yourName">
+                        <input type="text" name="yourName" class="form-control" id="yourName" value={{ form_fill["your_name"] }}>
                     </div>
                     <div class="col-6 mb-3">
                         <label for="hiringName" class="form-label">Hiring Manager's Name</label>
-                        <input type="text" name="hiringName" class="form-control" id="hiringName">
+                        <input type="text" name="hiringName" class="form-control" id="hiringName" value={{ form_fill["hiring_name"] }}>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="resumeFile" class="form-label">Upload Resume</label>
+                        <input class="form-control" type="file" id="resumeFile" name="resumeFile" accept=".docx" value={{ form_fill["resume_file"] }}>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="resume" class="form-label">Additional Background</label>
+                        <textarea class="form-control" name="resume" id="resume" rows="3">{{ form_fill["resume"] }}</textarea>
                     </div>
                     <div class="col-12 mb-3">
                         <label for="jobListing" class="form-label">Job Listing</label>
-                        <textarea class="form-control" name="jobListing" id="jobListing" rows="15"></textarea>
+                        <textarea class="form-control" name="jobListing" id="jobListing" rows="15">{{ form_fill["job_listing"] }}</textarea>
                     </div>
                     <ul class="actions">
                         <button type="submit" class="btn btn-dark">Submit</button>
@@ -39,14 +51,16 @@
                 </div>
             </form>
         </div>
-        <div class="col-12 my-auto" style="z-index: 5000; width: 100%;">
-            <div class="card">
-                <div class="card-body">
-                    <h2>Results: </h2>
-                    <p style="white-space: pre-line">{{ results }}</p>
+        {% if results != '' %}
+            <div class="col-12 my-auto" style="z-index: 5000; width: 100%;">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Results: </h2>
+                        <p style="white-space: pre-line">{{ results }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
     </div>
 </div>
 <div id="particles-js"></div>
@@ -54,5 +68,5 @@
 {% endblock %}
 
 {% block scripts %}
-    <!-- script code here -->
+
 {% endblock %}
