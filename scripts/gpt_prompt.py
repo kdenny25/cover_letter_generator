@@ -5,7 +5,7 @@ import os
 
 openai.api_key = OPENAI_API_KEY
 
-def gen_text(resume, job_listing, your_name, hiring_manager):
+def gen_text(resume, background, job_listing, your_name, hiring_manager):
     job_listing_response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
@@ -23,7 +23,7 @@ def gen_text(resume, job_listing, your_name, hiring_manager):
         messages=[
             {"role":"assistant", "content": f"Professionally identify relationships "
                                             f"between items on the following resume and job listing summary. Prioritize the most relevant items first RESUME: "
-                                            f"{resume}, JOB LISTING SUMMARY: {jl_result}"}
+                                            f"{resume} {background}, JOB LISTING SUMMARY: {jl_result}"}
         ],
         temperature=0,
         max_tokens=2048
@@ -61,10 +61,3 @@ def obtainText(docFileName):
 
 def saveText(textData):
     document = Document()
-
-
-# resume = obtainText(r'C:\Users\kdenn\PycharmProjects\cover_letter_generator\static\Kevin Resume_072223.docx')
-# job_listing = obtainText(r'C:\Users\kdenn\PycharmProjects\cover_letter_generator\static\job_listing.docx')
-#
-# #print(response['choices'][0]['text'])
-# print(gen_text(resume, job_listing))

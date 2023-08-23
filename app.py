@@ -21,7 +21,7 @@ def home():  # put application's code here
     else:
         your_name = request.form.get('yourName')
         hiring_name = request.form.get('hiringName')
-        resume = request.form.get('resume')
+        background = request.form.get('background')
         job_listing = request.form.get('jobListing')
         resume_file = request.files.get("resumeFile", None)
 
@@ -31,11 +31,13 @@ def home():  # put application's code here
             resume_file.save(filename)
             resume_contents = obtainText(filename)
             print('contents extracted successfully.')
+        else:
+            resume_contents = ''
 
-        results = gen_text(resume_contents, job_listing, your_name, hiring_name)
+        results = gen_text(resume_contents, background, job_listing, your_name, hiring_name)
         form_fill = {'your_name': your_name,
                      'hiring_name': hiring_name,
-                     'resume': resume_contents,
+                     'resume': resume_contents + background,
                      'job_listing': job_listing,
                      'resume_file': resume_file}
 
